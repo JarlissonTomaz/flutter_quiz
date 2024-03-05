@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Resposta extends StatelessWidget {
-  const Resposta(this.resposta, this.texto, {super.key});
+  const Resposta(this.respondido, this.texto, {super.key});
 
-  final void Function() resposta;
+  final void Function() respondido;
 
   final String texto;
 
@@ -16,7 +16,7 @@ class Resposta extends StatelessWidget {
         vertical: 3,
       ),
       child: OutlinedButton(
-        onPressed: resposta,
+        onPressed: respondido,
         child: Text(texto),
       ),
     );

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_teste_crud/questao.dart';
-import 'package:flutter_teste_crud/resposta.dart';
+import 'package:flutter_teste_crud/questionario.dart';
 import 'package:flutter_teste_crud/resultado.dart';
 
 class HomeApp extends StatefulWidget {
@@ -13,7 +12,7 @@ class HomeApp extends StatefulWidget {
 class _HomeAppState extends State<HomeApp> {
   var _pergunta = 0;
 
-  void _resposta() {
+  void _respondido() {
     setState(() {
       if (temItemNaLista) {
         _pergunta++;
@@ -24,15 +23,27 @@ class _HomeAppState extends State<HomeApp> {
   final List<Map<String, Object>> _listaDePergunta = const [
     {
       'texto': 'Pergunta 1',
-      'resposta': ['a', 'b', 'c']
+      'resposta': [
+        {'texto': 'a', 'pontuacao': 10},
+        {'texto': 'b', 'pontuacao': 5},
+        {'texto': 'c', 'pontuacao': 2},
+      ]
     },
     {
       'texto': 'Pergunta 2',
-      'resposta': ['d', 'e', 'f']
+      'resposta': [
+        {'texto': 'd', 'pontuacao': 10},
+        {'texto': 'e', 'pontuacao': 5},
+        {'texto': 'f', 'pontuacao': 2},
+      ]
     },
     {
       'texto': 'Pergunta 3',
-      'resposta': ['g', 'h', 'i']
+      'resposta': [
+        {'texto': 'g', 'pontuacao': 10},
+        {'texto': 'h', 'pontuacao': 5},
+        {'texto': 'i', 'pontuacao': 2},
+      ]
     }
   ];
 
@@ -48,17 +59,13 @@ class _HomeAppState extends State<HomeApp> {
         ),
         body: temItemNaLista
             ? Center(
-                child: Column(
-                  children: [
-                    Questao(
-                      _listaDePergunta,
-                      _pergunta,
-                    ),
-                    Resposta(_resposta, 'Resposta 1'),
-                    Resposta(_resposta, 'Resposta 2'),
-                    Resposta(_resposta, 'Resposta 3'),
-                  ],
-                ),
+                child: Column(children: [
+                  Questionario(
+                    respondido: _respondido,
+                    listaDePergunta: _listaDePergunta,
+                    pergunta: _pergunta,
+                  )
+                ]),
               )
             : const Resultado());
   }

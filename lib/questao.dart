@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 
 class Questao extends StatelessWidget {
-  const Questao(this.listaDePergunta, this.pergunta, {super.key});
+  const Questao(this.perguntaTexto, {super.key});
 
-  final List<Map<String, Object>> listaDePergunta;
-
-  final int pergunta;
+  final String perguntaTexto;
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      listaDePergunta[pergunta]['texto'] as String,
+      perguntaTexto,
       style: const TextStyle(
         fontSize: 28,
         fontWeight: FontWeight.bold,
