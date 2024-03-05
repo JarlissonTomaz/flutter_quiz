@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_teste_crud/questao.dart';
 import 'package:flutter_teste_crud/resposta.dart';
+import 'package:flutter_teste_crud/resultado.dart';
 
 class HomeApp extends StatefulWidget {
   const HomeApp({super.key});
@@ -14,7 +15,9 @@ class _HomeAppState extends State<HomeApp> {
 
   void _resposta() {
     setState(() {
-      _pergunta++;
+      if (temItemNaLista) {
+        _pergunta++;
+      }
     });
   }
 
@@ -33,25 +36,30 @@ class _HomeAppState extends State<HomeApp> {
     }
   ];
 
+  bool get temItemNaLista {
+    return _pergunta < _listaDePergunta.length;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Teste de Conhecimento'),
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            Questao(
-              _listaDePergunta,
-              _pergunta,
-            ),
-            Resposta(_resposta, 'Resposta 1'),
-            Resposta(_resposta, 'Resposta 2'),
-            Resposta(_resposta, 'Resposta 3'),
-          ],
+        appBar: AppBar(
+          title: const Text('Teste de Conhecimento'),
         ),
-      ),
-    );
+        body: temItemNaLista
+            ? Center(
+                child: Column(
+                  children: [
+                    Questao(
+                      _listaDePergunta,
+                      _pergunta,
+                    ),
+                    Resposta(_resposta, 'Resposta 1'),
+                    Resposta(_resposta, 'Resposta 2'),
+                    Resposta(_resposta, 'Resposta 3'),
+                  ],
+                ),
+              )
+            : const Resultado());
   }
 }
