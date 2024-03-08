@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Resposta extends StatelessWidget {
-  const Resposta(this.respondido, this.texto, {super.key});
+  const Resposta(this.texto, this.respondido, {super.key});
 
   final void Function() respondido;
 
