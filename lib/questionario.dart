@@ -10,7 +10,7 @@ class Questionario extends StatelessWidget {
     super.key,
   });
 
-  final void Function() respondido;
+  final void Function(int) respondido;
 
   final List<Map<String, Object>> listaDePergunta;
 
@@ -29,7 +29,8 @@ class Questionario extends StatelessWidget {
     return Column(
       children: [
         Questao(listaDePergunta[pergunta]['texto'] as String),
-        ...respostas.map((e) => Resposta(respondido, e['texto'] as String))
+        ...respostas.map((e) => Resposta(
+            () => respondido(e(['pontuacao'] as int)), e['texto'] as String))
       ],
     );
   }

@@ -11,11 +11,13 @@ class HomeApp extends StatefulWidget {
 
 class _HomeAppState extends State<HomeApp> {
   var _pergunta = 0;
+  var pontuacaoTotal = 0;
 
-  void _respondido() {
+  void _respondido(int pontos) {
     setState(() {
       if (temItemNaLista) {
         _pergunta++;
+        pontuacaoTotal += pontos;
       }
     });
   }
@@ -67,6 +69,6 @@ class _HomeAppState extends State<HomeApp> {
                   )
                 ]),
               )
-            : const Resultado());
+            : Resultado(pontuacaoTotal));
   }
 }
